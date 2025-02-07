@@ -1,0 +1,3 @@
+Scan executed on: 2025-02-05
+Detected Cryptojacking Attempts: 2
+Network Anomalies: 1

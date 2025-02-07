@@ -1,0 +1,7 @@
+import logging
+
+logging.basicConfig(filename="logs/network_scan.log",
+                    level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(message)s")
+
+logging.info("Network scan initialized.")

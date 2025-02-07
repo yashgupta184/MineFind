@@ -1,0 +1,5 @@
+{
+    "network": ["192.168.1.10:3333", "192.168.1.15:4444"],
+    "processes": ["xmrig.exe (PID: 2345)", "unusual_process.exe (PID: 6789)"],
+    "malware": ["Suspicious crypto miner file detected: miner.exe"]
+}

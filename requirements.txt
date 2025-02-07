@@ -1,0 +1,12 @@
+flask
+nmap
+scapy
+yara-python
+psutil
+pyinstaller
+requests
+beautifulsoup4
+flask-wtf
+wtforms
+gunicorn
+pytest

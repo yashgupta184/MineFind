@@ -1,0 +1,10 @@
+import logging
+
+logging.basicConfig(filename="logs/process_monitor.log",
+                    level=logging.INFO,
+                    format="%(asctime)s - %(levelname)s - %(message)s")
+
+logging.info("Process monitoring started.")
+2025-02-07 04:40:26,747 - WARNING -  * Debugger is active!
+2025-02-07 04:40:26,751 - INFO -  * Debugger PIN: 106-068-005
+2025-02-07 04:40:37,810 - INFO -  * Detected change in 'C:\\Users\\Yash Gupta\\OneDrive\\\u6587\u6863\\Programming\\Python\\Cryptominerdetector\\process_monitor.py', reloading

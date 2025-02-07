@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container results-container">
+        <div class="status-indicator">
+            <div class="pulse-ring"></div>
+            <div id="status-icon"></div>
+        </div>
+        <h1>Scan Results</h1>
+        
+        <div class="results-section">
+            <h2><span class="icon">🌐</span> Network Analysis</h2>
+            <div class="result-card">
+                <pre id="network-scan">{{ scan_results.get('network_scan', 'No data available') | tojson(indent=4) }}</pre>
+            </div>
+        </div>
+        
+        <div class="results-section">
+            <h2><span class="icon">⚡</span> Process Monitor</h2>
+            <div class="result-card">
+                <pre id="process-monitor">{{ scan_results.get('process_monitor', 'No data available') | tojson(indent=4) }}</pre>
+            </div>
+        </div>
+        
+        <div class="results-section">
+            <h2><span class="icon">🛡️</span> YARA Malware Scan</h2>
+            <div class="result-card">
+                <pre id="yara-scan">{{ scan_results.get('yara_scan', 'No data available') | tojson(indent=4) }}</pre>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/" class="back-button">
+                <span class="button-icon">←</span>
+                Return to Scanner
+            </a>
+            <button onclick="window.print()" class="print-button">
+                <span class="button-icon">📄</span>
+                Export Report
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let scanResults = JSON.parse('{{ scan_results | tojson | safe }}');
+            const statusIcon = document.getElementById('status-icon');
+            
+            if (scanResults && scanResults.yara_scan && Object.keys(scanResults.yara_scan).length > 0) {
+                statusIcon.innerHTML = '⚠️';
+                statusIcon.className = 'status-warning';
+                showNotification('Warning: Potential threats detected!', 'warning');
+            } else {
+                statusIcon.innerHTML = '✅';
+                statusIcon.className = 'status-safe';
+                showNotification('System scan completed. No threats detected.', 'success');
+            }
+        });
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
